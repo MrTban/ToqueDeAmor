@@ -1,0 +1,16 @@
+{
+  "name": "Toque De Amor — Somos La Excusa Perfecta Para Sorprender",
+  "short_name": "Toque De Amor",
+  "description": "Somos La Excusa Perfecta Para Sorprender. Anchetas, tarjetas y kits hechos a mano.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff6f9",
+  "theme_color": "#fe0175",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

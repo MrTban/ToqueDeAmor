@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@100..900&display=swap');
+
+@import 'tailwindcss';
+
+@theme inline {
+  --font-display: 'DM Serif Display', ui-serif, serif;
+  --font-sans: 'Inter Variable', sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 8px);
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+}
+
+/*
+  Paleta — Detallar
+  ink       #120014  negro cálido (texto sobre claro, bloques oscuros)
+  paper     #fff6f9  blanco roto, fondo cálido
+  primary   #fe0175  magenta de marca, CTAs y acentos
+  secondary #ffc2dd  rosa suave, soporte y fondos de tarjeta
+  muted     #fde7ef  rosa polvo, separadores y fondos sutiles
+*/
+:root {
+  --background: #fff6f9;
+  --foreground: #1c0410;
+  --card: #ffffff;
+  --card-foreground: #1c0410;
+  --primary: #fe0175;
+  --primary-foreground: #fff6f9;
+  --secondary: #ffc2dd;
+  --secondary-foreground: #4a0420;
+  --muted: #fde7ef;
+  --muted-foreground: #7a3350;
+  --accent: #ffe2ee;
+  --accent-foreground: #4a0420;
+  --border: #f4cbdd;
+  --ink: #120014;
+  --paper: #fff6f9;
+  --radius: 1rem;
+}
+
+.dark {
+  --background: #15010c;
+  --foreground: #fff0f6;
+  --card: #1f0314;
+  --card-foreground: #fff0f6;
+  --primary: #fe0175;
+  --primary-foreground: #fff6f9;
+  --secondary: #3a0a22;
+  --secondary-foreground: #ffd3e6;
+  --muted: #2a0717;
+  --muted-foreground: #e6a8c6;
+  --accent: #3a0a22;
+  --accent-foreground: #ffd3e6;
+  --border: #3a0a22;
+  --ink: #fff0f6;
+  --paper: #15010c;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.ribbon-path {
+  stroke: var(--color-primary);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 6 10;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Skeleton shimmer ─────────────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, var(--muted) 0%, var(--accent) 40%, var(--secondary) 60%, var(--muted) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
