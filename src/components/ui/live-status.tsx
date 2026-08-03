@@ -12,13 +12,13 @@ import { useEffect, useState } from 'react'
  * a las 3am hora de Bogotá, tiene que ver "cerrado", no "abierto" por error
  * de zona horaria.
  *
- * Horario: Lunes a Sábado, 9am–7pm hora de Bogotá (ajustar acá si cambia).
+ * Horario: Lunes a Sábado, 9am–4pm hora de Madrid (ajustar acá si cambia).
  */
 
 const OPEN_HOUR = 9
-const CLOSE_HOUR = 19 // 7pm
-const OPEN_DAYS = [1, 2, 3, 4, 5, 6] // lunes(1) a sábado(6) — domingo(0) cerrado
-const BUSINESS_TZ = 'America/Bogota'
+const CLOSE_HOUR = 16 // 4pm
+const OPEN_DAYS = [1, 2, 3, 4, 5] // lunes(1) a viernes(5) — domingo(0) cerrado
+const BUSINESS_TZ = 'Europe/London' // hora de Madrid (España peninsular) — ajustar si cambia
 
 function getBogotaNow(): Date {
   // Convierte "ahora" a la hora local de Bogotá sin importar dónde esté el visitante
@@ -96,7 +96,9 @@ export function BusinessHoursCard() {
       <div>
         <p className='text-sm font-semibold text-ink'>{isOpen ? 'Te respondemos ahora mismo' : 'Fuera de horario'}</p>
         <p className='text-xs text-muted-foreground'>
-          {isOpen ? 'Estamos en línea — Lun a Sáb, 9am – 7pm' : 'Te respondemos apenas abramos — Lun a Sáb, 9am – 7pm'}
+          {isOpen
+            ? 'Estamos en línea — Lun a Vie, 09:00 – 16:00'
+            : 'Te respondemos apenas abramos — Lun a Vie, 09:00 – 16:00'}
         </p>
       </div>
     </div>
