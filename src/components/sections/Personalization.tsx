@@ -4,14 +4,14 @@ import { SectionHeading } from './Catalog'
 const STEPS = [
   {
     num: '01',
-    title: 'Elegí tu regalo',
-    text: 'Explorá el catálogo y encontrá la ancheta, kit o tarjeta que más le gusta a esa persona. Si no sabés, te asesoramos.',
+    title: 'Elige tu regalo',
+    text: 'Explora el catálogo y encuentra la ancheta, kit o tarjeta que más le guste a esa persona. Si no lo tienes claro, te asesoramos.',
     image: '/images/taller.png',
     alt: 'Eligiendo el regalo en Toque de Amor',
   },
   {
     num: '02',
-    title: 'Contanos la historia',
+    title: 'Cuéntanos la historia',
     text: 'Un nombre, una fecha, una frase. Le agregamos ese detalle que convierte cualquier regalo en algo único e irrepetible.',
     image: '/images/escribir.png',
     alt: 'Personalizando la tarjeta',

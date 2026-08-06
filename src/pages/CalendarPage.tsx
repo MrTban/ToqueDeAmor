@@ -52,17 +52,36 @@ export function CalendarPage() {
   // Destacadas: las 3 fechas más próximas (agrupando same-day como una sola tarjeta)
   const featured = grouped.slice(0, 3)
 
-  // El resto, organizado por mes calendario — empezando por el mes actual
-  // y dando la vuelta al año, para que se lea como "lo que viene" en orden.
-  const currentMonth = new Date().getMonth()
-  const monthOrder = Array.from({ length: 12 }, (_, i) => (currentMonth + i) % 12)
+  // El resto, organizado por mes — recorriendo la lista ya ordenada
+  // cronológicamente y abriendo una sección nueva cada vez que cambia el
+  // par (mes, año). Esto evita mezclar "agosto de este año" con "agosto
+  // del año que viene" en la misma sección — un caso real cuando una
+  // fecha ya pasó este año y su próxima ocurrencia cae 12 meses después.
+  const byMonth: {
+    monthIndex: number
+    year: number
+    label: string
+    groups: typeof grouped
+  }[] = []
 
-  const byMonth = monthOrder
-    .map(monthIndex => ({
-      monthIndex,
-      groups: grouped.filter(g => g.date.getMonth() === monthIndex),
-    }))
-    .filter(m => m.groups.length > 0)
+  for (const g of grouped) {
+    const monthIndex = g.date.getMonth()
+    const year = g.date.getFullYear()
+    const last = byMonth[byMonth.length - 1]
+
+    if (last && last.monthIndex === monthIndex && last.year === year) {
+      last.groups.push(g)
+      continue
+    }
+
+    // Si este mes ya apareció antes (en un año distinto), mostramos el
+    // año en la etiqueta para dejar claro que es la vuelta siguiente.
+    const monthName = MONTH_NAMES[monthIndex]
+    const seenBefore = byMonth.some(s => s.monthIndex === monthIndex)
+    const label = seenBefore ? `${monthName} ${year}` : monthName
+
+    byMonth.push({ monthIndex, year, label, groups: [g] })
+  }
 
   return (
     <section className='bg-background pb-28 pt-36'>
@@ -143,22 +162,20 @@ export function CalendarPage() {
         <div className='mt-20'>
           <h2 className='font-display text-2xl font-semibold text-ink'>Todo el año</h2>
           <p className='mt-1 text-sm text-muted-foreground'>
-            Empezando por {MONTH_NAMES[currentMonth]}, que es donde estamos ahora.
+            Empezando por {MONTH_NAMES[new Date().getMonth()]}, que es donde estamos ahora.
           </p>
 
           <div className='mt-8 space-y-10'>
-            {byMonth.map(({ monthIndex, groups }, mi) => (
+            {byMonth.map(({ label, groups }, mi) => (
               <motion.div
-                key={monthIndex}
+                key={label}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4, delay: Math.min(mi * 0.05, 0.3) }}
               >
                 <div className='flex items-center gap-3'>
-                  <span className='font-display text-sm font-bold uppercase tracking-wide text-primary'>
-                    {MONTH_NAMES[monthIndex]}
-                  </span>
+                  <span className='font-display text-sm font-bold uppercase tracking-wide text-primary'>{label}</span>
                   <div className='h-px flex-1 bg-border' />
                 </div>
 
@@ -210,9 +227,9 @@ export function CalendarPage() {
           className='mt-20 flex flex-col items-center gap-4 rounded-3xl border border-primary/15 bg-secondary/30 px-8 py-12 text-center'
         >
           <Sparkles className='h-6 w-6 text-primary' />
-          <h2 className='font-display text-2xl font-semibold text-ink sm:text-3xl'>¿Ya sabés qué fecha se acerca?</h2>
+          <h2 className='font-display text-2xl font-semibold text-ink sm:text-3xl'>¿Ya sabes qué fecha se acerca?</h2>
           <p className='max-w-md text-muted-foreground'>
-            Contanos para quién es y armamos algo pensado exactamente para esa ocasión.
+            Cuéntanos para quién es y preparamos algo pensado exactamente para esa ocasión.
           </p>
           <Button size='lg' onClick={() => navigate('/contacto')}>
             Pedir mi regalo personalizado

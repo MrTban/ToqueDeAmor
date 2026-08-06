@@ -23,7 +23,7 @@ export function ContactPage() {
     <section className='bg-background pb-28 pt-36'>
       <Seo
         title='Contacto'
-        description='Contanos para quién es y lo preparamos con amor. Escribinos por WhatsApp, Instagram o el formulario.'
+        description='Cuéntanos para quién es y lo preparamos con amor. Escríbenos por WhatsApp, Instagram o el formulario.'
         path='/contacto'
       />
       <div className='mx-auto max-w-7xl px-6 lg:px-10'>
@@ -38,10 +38,10 @@ export function ContactPage() {
             Hablemos de tu regalo
           </Badge>
           <h1 className='mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl'>
-            Contanos para quién es y lo preparamos con amor
+            Cuéntanos para quién es y lo preparamos con amor
           </h1>
           <p className='mt-4 text-lg text-muted-foreground'>
-            Escribinos por WhatsApp, Instagram o este formulario. Respondemos rápido — de lunes a sábado.
+            Escríbenos por WhatsApp, Instagram o este formulario. Respondemos rápido — de lunes a sábado.
           </p>
         </motion.div>
 
@@ -55,7 +55,7 @@ export function ContactPage() {
             <ContactForm />
 
             <div className='mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3'>
-              <InfoCard icon={Mail} label='toquedeamor.es@gmail.com' copyValue='toquedeamor.es@gmail.com' />
+              <InfoCard icon={Mail} label='toquedeamor.regalos@gmail.com' copyValue='toquedeamor.regalos@gmail.com' />
               <BusinessHoursCard />
               <InfoCard icon={MapPin} label='Domicilio disponible' />
             </div>

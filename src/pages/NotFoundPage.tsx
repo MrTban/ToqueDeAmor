@@ -23,7 +23,7 @@ export function NotFoundPage() {
         <img src='/images/saludo2.png' alt='Toque de Amor' className='mx-auto h-40 w-auto object-contain' />
         <h1 className='mt-6 text-4xl font-semibold text-ink'>Esta página no existe… todavía</h1>
         <p className='mt-3 text-muted-foreground max-w-sm mx-auto'>
-          Pero tenemos regalos para todas las ocasiones. Volvé al inicio y encontrá el toque perfecto.
+          Pero tenemos regalos para todas las ocasiones. Vuelve al inicio y encuentra el toque perfecto.
         </p>
         <Button className='mt-8' onClick={() => navigate('/')}>
           Volver al inicio

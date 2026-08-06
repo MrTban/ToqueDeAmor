@@ -14,7 +14,11 @@ const container = {
 }
 const item = {
   hidden: { opacity: 0, y: 36 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' as const },
+  },
 }
 
 export function Catalog() {
@@ -39,7 +43,7 @@ export function Catalog() {
           <SectionHeading
             eyebrow='Catálogo'
             title='Los favoritos de quienes regalan con intención'
-            description='Tocá cualquier pieza para ver todos los detalles y empezar a personalizarla.'
+            description='Toca cualquier pieza para ver todos los detalles y empezar a personalizarla.'
           />
           <Button variant='outline' className='shrink-0' onClick={() => navigate('/catalogo')}>
             Ver catálogo completo

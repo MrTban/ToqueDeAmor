@@ -14,12 +14,12 @@ export function Contact() {
         <div>
           <SectionHeading
             eyebrow='Contacto'
-            title='¿Ya sabés para quién es?'
-            description='Contanos la ocasión y te armamos una propuesta personalizada en menos de 2 horas.'
+            title='¿Ya sabes para quién es?'
+            description='Cuéntanos la ocasión y te preparamos una propuesta personalizada en menos de 2 horas.'
           />
 
           <div className='mt-10 space-y-4'>
-            <ContactRow icon={Mail} label='toquedeamor.es@gmail.com' copyValue='toquedeamor.es@gmail.com' />
+            <ContactRow icon={Mail} label='toquedeamor.regalos@gmail.com' copyValue='toquedeamor.regalos@gmail.com' />
             <ContactRow icon={MessageCircle} label='WhatsApp disponible' />
             <ContactRow icon={AtSign} label='@toquedeamor.es' copyValue='@toquedeamor.es' />
           </div>
@@ -28,7 +28,7 @@ export function Contact() {
           <div className='mt-8 flex items-end gap-4'>
             <img
               src='/images/chat.png'
-              alt='Escribinos por WhatsApp'
+              alt='Escríbenos por WhatsApp'
               className='h-28 w-auto object-contain drop-shadow-md'
             />
             <button

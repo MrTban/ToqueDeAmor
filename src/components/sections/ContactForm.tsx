@@ -16,7 +16,10 @@ export function ContactForm({ className }: { className?: string }) {
     const occasion = (form.elements.namedItem('occasion') as HTMLInputElement)?.value
 
     // Evento de conversión — el más importante del sitio: alguien pidió cotización.
-    trackEvent('generate_lead', { form: 'contact', occasion: occasion || 'sin especificar' })
+    trackEvent('generate_lead', {
+      form: 'contact',
+      occasion: occasion || 'sin especificar',
+    })
 
     // sileo.promise encadena automáticamente loading → success/error
     sileo.promise(fakeSubmit(), {
@@ -32,7 +35,7 @@ export function ContactForm({ className }: { className?: string }) {
       },
       error: {
         title: 'No pudimos enviar tu mensaje',
-        description: 'Probá de nuevo o escribinos directo por WhatsApp.',
+        description: 'Inténtalo de nuevo o escríbenos directo por WhatsApp.',
       },
     })
 
@@ -49,7 +52,7 @@ export function ContactForm({ className }: { className?: string }) {
           <Input name='name' placeholder='Tu nombre' required />
         </Field>
         <Field label='WhatsApp o Email'>
-          <Input name='contact' placeholder='+57 300 000 0000' required />
+          <Input name='contact' placeholder='Tu WhatsApp o email' required />
         </Field>
       </div>
       <div className='mt-5'>
@@ -58,7 +61,7 @@ export function ContactForm({ className }: { className?: string }) {
         </Field>
       </div>
       <div className='mt-5'>
-        <Field label='Contanos tu idea'>
+        <Field label='Cuéntanos tu idea'>
           <Textarea
             name='message'
             placeholder='Nombre de la persona, fecha especial, algo que le guste… cualquier detalle nos ayuda a hacer algo único.'

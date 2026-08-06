@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { AtSign, Heart, MessageCircle, Send } from 'lucide-react'
+import { AtSign, Heart, MessageCircle } from 'lucide-react'
 import { sileo } from 'sileo'
 
 import { Badge } from '@/components/ui/badge'
@@ -89,7 +89,7 @@ export function WhatsAppWidget() {
   return (
     <Widget
       icon={MessageCircle}
-      title='Pedinos por WhatsApp'
+      title='Escríbenos por WhatsApp'
       subtitle='Respondemos rápido — de lunes a sábado'
       action={{ label: 'Abrir chat', onClick: handleOpen }}
       badge={<LiveStatusBadge />}
@@ -99,49 +99,6 @@ export function WhatsAppWidget() {
         <ChatBubble from='me'>Es para un cumpleaños, quiero una ancheta sorpresa</ChatBubble>
         <ChatBubble from='them'>¡Perfecto! Te mando opciones en un momento ✨</ChatBubble>
       </div>
-    </Widget>
-  )
-}
-
-/** Simula la suscripción — reemplazar por la llamada real a la API. */
-function fakeSubscribe(): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, 900))
-}
-
-export function NewsletterWidget() {
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    trackEvent('newsletter_signup')
-    sileo.promise(fakeSubscribe(), {
-      loading: { title: 'Suscribiendo…' },
-      success: {
-        title: '¡Ya sos parte de Toque de Amor! 🎉',
-        description: 'Te avisamos antes que nadie cuando haya novedades y fechas especiales.',
-      },
-      error: {
-        title: 'No pudimos suscribirte',
-        description: 'Revisá el email e intentá de nuevo.',
-      },
-    })
-    ;(e.target as HTMLFormElement).reset()
-  }
-
-  return (
-    <Widget icon={Send} title='Novedades y fechas especiales' subtitle='Un mensaje al mes, con amor y sin spam'>
-      <form onSubmit={handleSubmit} className='flex gap-2'>
-        <input
-          type='email'
-          required
-          placeholder='tu@email.com'
-          className='flex-1 rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary'
-        />
-        <button
-          type='submit'
-          className='rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors'
-        >
-          Suscribir
-        </button>
-      </form>
     </Widget>
   )
 }

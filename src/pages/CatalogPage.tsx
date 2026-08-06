@@ -37,7 +37,7 @@ export function CatalogPage() {
       if (count === 0) {
         sileo.info({
           title: 'Sin productos por ahora',
-          description: `Todavía no tenemos regalos en "${cat}" — probá otra categoría.`,
+          description: `Todavía no tenemos regalos en "${cat}" — prueba otra categoría.`,
           duration: 3000,
         })
       }
@@ -52,7 +52,7 @@ export function CatalogPage() {
     <section className='bg-background pb-28 pt-36'>
       <Seo
         title='Catálogo'
-        description='Explorá anchetas, tarjetas y kits personalizados para cada ocasión. Regalos hechos a mano, listos para sorprender.'
+        description='Explora anchetas, tarjetas y kits personalizados para cada ocasión. Regalos hechos a mano, listos para sorprender.'
         path='/catalogo'
       />
       <div className='mx-auto max-w-7xl px-6 lg:px-10'>
@@ -70,26 +70,29 @@ export function CatalogPage() {
             Anchetas y regalos listos para sorprender
           </h1>
           <p className='mt-4 text-lg text-muted-foreground'>
-            Tocá cada regalo para ver todos los detalles. Personalizamos todo para vos.
+            Toca cada regalo para ver todos los detalles. Lo personalizamos todo para ti.
           </p>
         </motion.div>
 
-        {/* filtros */}
-        <div className='no-scrollbar mt-10 flex gap-2 overflow-x-auto pb-2'>
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat}
-              onClick={() => changeCategory(cat)}
-              className={cn(
-                'shrink-0 rounded-full px-5 py-2 text-sm font-semibold capitalize transition-colors',
-                active === cat
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-secondary',
-              )}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* filtros — degradado a la derecha insinúa que hay más para scrollear */}
+        <div className='relative mt-10'>
+          <div className='no-scrollbar flex gap-2 overflow-x-auto pb-2'>
+            {CATEGORIES.map(cat => (
+              <button
+                key={cat}
+                onClick={() => changeCategory(cat)}
+                className={cn(
+                  'shrink-0 rounded-full px-5 py-2 text-sm font-semibold capitalize transition-colors',
+                  active === cat
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-muted text-muted-foreground hover:bg-secondary',
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          <div className='pointer-events-none absolute right-0 top-0 bottom-2 w-10 bg-linear-to-l from-background to-transparent' />
         </div>
 
         {/* grid — SIN LayoutGroup, sin layoutId */}
@@ -116,9 +119,9 @@ export function CatalogPage() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className='mt-20 flex flex-col items-center gap-4 rounded-3xl border border-primary/15 bg-secondary/30 px-8 py-12 text-center'
           >
-            <h2 className='font-display text-2xl font-semibold text-ink sm:text-3xl'>¿No encontrás lo que buscás?</h2>
+            <h2 className='text-2xl text-ink sm:text-3xl'>¿No encuentras lo que buscas?</h2>
             <p className='max-w-md text-muted-foreground'>
-              Contanos la ocasión y lo armamos desde cero con ese toque especial.
+              Cuéntanos la ocasión y lo preparamos desde cero con ese toque especial.
             </p>
             <Button size='lg' onClick={() => navigate('/contacto')}>
               Pedir mi regalo personalizado

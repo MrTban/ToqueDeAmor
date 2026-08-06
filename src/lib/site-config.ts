@@ -13,7 +13,7 @@ export const SITE = {
   tagline: 'Somos La Excusa Perfecta Para Sorprender',
   url: 'https://www.toquedeamor.store',
   defaultDescription:
-    'Somos La Excusa Perfecta Para Sorprender. Toque De Amor diseña piezas únicas para cada historia — anchetas, tarjetas y kits hechos a mano.',
+    'Somos La Excusa Perfecta Para Sorprender. Diseñamos piezas únicas para cada historia — anchetas, tarjetas y kits hechos a mano.',
   locale: 'es_ES',
   themeColor: '#fe0175',
 
@@ -25,7 +25,7 @@ export const SITE = {
   // Usados en el schema.org LocalBusiness (JSON-LD) — ayuda a aparecer
   // en Google Maps / búsquedas locales si aplica.
   business: {
-    telephone: '+34 634 13 06 42',
+    telephone: '+34-634-13-06-42',
     addressLocality: 'Tenerife, España',
     addressCountry: 'ES',
     priceRange: '€€',

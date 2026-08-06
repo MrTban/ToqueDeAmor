@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -26,6 +26,15 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // El menú ahora es un overlay a pantalla completa — bloqueamos el scroll
+  // de fondo mientras está abierto, igual que hacemos con el modal de producto.
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
   function goToSection(hash: string) {
     setOpen(false)
     if (window.location.pathname !== '/') {
@@ -45,7 +54,7 @@ export function Header() {
         scrolled ? 'bg-background/80 backdrop-blur-lg border-b border-border py-3' : 'bg-transparent py-6',
       )}
     >
-      <nav className='mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10'>
+      <nav className='relative z-50 mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10'>
         <Link to='/' className='flex items-center gap-2 group'>
           <img src='/images/logo.png' alt='Toque de Amor' className='h-10 w-auto object-contain' />
           <span className='font-display text-xl font-semibold tracking-tight text-ink'>Toque De Amor</span>
@@ -91,50 +100,56 @@ export function Header() {
         </button>
       </nav>
 
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className='md:hidden border-t border-border bg-background/95 backdrop-blur-lg'
-        >
-          <ul className='flex flex-col gap-1 px-6 py-4'>
-            {LINKS.map(link =>
-              link.type === 'route' ? (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    onClick={() => setOpen(false)}
-                    className='block w-full rounded-lg px-3 py-3 text-left text-sm font-medium text-foreground/80 hover:bg-muted hover:text-primary'
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ) : (
-                <li key={link.to}>
-                  <button
-                    onClick={() => goToSection(link.to)}
-                    className='block w-full rounded-lg px-3 py-3 text-left text-sm font-medium text-foreground/80 hover:bg-muted hover:text-primary'
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ),
-            )}
-            <li className='pt-2'>
-              <Button
-                className='w-full'
-                onClick={() => {
-                  setOpen(false)
-                  navigate('/contacto')
-                }}
-              >
-                Crear mi regalo
-              </Button>
-            </li>
-          </ul>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            // Overlay sólido a pantalla completa — antes esto empujaba el
+            // contenido de la página hacia abajo en vez de taparlo, y se
+            // veían mezclados los botones del Hero con los del menú.
+            className='fixed inset-0 z-40 overflow-y-auto bg-background pt-24 md:hidden'
+          >
+            <ul className='flex flex-col gap-1 px-6 py-4'>
+              {LINKS.map(link =>
+                link.type === 'route' ? (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      onClick={() => setOpen(false)}
+                      className='block w-full rounded-lg px-3 py-3 text-left text-base font-medium text-foreground/80 hover:bg-muted hover:text-primary'
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={link.to}>
+                    <button
+                      onClick={() => goToSection(link.to)}
+                      className='block w-full rounded-lg px-3 py-3 text-left text-base font-medium text-foreground/80 hover:bg-muted hover:text-primary'
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ),
+              )}
+              <li className='pt-2'>
+                <Button
+                  className='w-full'
+                  onClick={() => {
+                    setOpen(false)
+                    navigate('/contacto')
+                  }}
+                >
+                  Crear mi regalo
+                </Button>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }
