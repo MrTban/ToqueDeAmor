@@ -4,6 +4,7 @@ import { Toaster } from 'sileo'
 
 import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
+import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button'
 
 import { initAnalytics, trackPageview } from '@/lib/analytics'
 
@@ -41,6 +42,8 @@ export function RootLayout() {
       </main>
 
       <Footer />
+
+      <ScrollToTopButton />
     </div>
   )
 }
