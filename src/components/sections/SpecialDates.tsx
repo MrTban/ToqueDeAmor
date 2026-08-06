@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { SectionHeading } from './Catalog'
 import { Button } from '@/components/ui/button'
+import { HorizontalScroller } from '@/components/ui/horizontal-scroller'
 import { getResolvedOccasions, groupByExactDate, formatLongDate } from '@/lib/occasions'
 
 // Solo mostramos las próximas 5 fechas (agrupadas por día exacto) — el
@@ -22,31 +23,23 @@ export function SpecialDates() {
             title='Cada ocasión merece su propio toque'
             description='Las próximas fechas para regalar — el calendario completo del año tiene todas.'
           />
-          <Button variant='outline' className='shrink-0' onClick={() => navigate('/calendario')}>
+          <Button variant='outline' className='shrink-0 cursor-pointer' onClick={() => navigate('/calendario')}>
             Ver calendario completo
           </Button>
         </div>
 
         {/* globo decorativo — mascota que sostiene el globo */}
         <div className='relative mt-10'>
-          <div className='absolute -top-6 right-6 hidden lg:block pointer-events-none z-10'>
-            <img
-              src='/images/globos.png'
-              alt='Globo personalizado Toque de Amor'
-              className='h-36 w-auto object-contain drop-shadow-xl animate-float'
-            />
-          </div>
-
-          <div className='no-scrollbar flex gap-5 overflow-x-auto pb-4 snap-x'>
+          <HorizontalScroller fadeFrom='from-secondary/40' contentClassName='flex gap-5 pb-4 snap-x'>
             {upcoming.map((group, i) => (
               <motion.button
                 key={group.dateKey}
                 onClick={() => navigate('/calendario')}
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.45, delay: i * 0.07 }}
-                className='flex w-56 shrink-0 flex-col gap-4 rounded-2xl border border-primary/15 bg-card p-6 text-left shadow-sm snap-start transition-transform hover:-translate-y-1 hover:shadow-md'
+                className='flex w-56 shrink-0 flex-col gap-4 rounded-2xl border border-primary/15 bg-card p-6 text-left shadow-sm snap-start transition-transform hover:-translate-y-1 hover:shadow-md cursor-pointer'
               >
                 <div className='flex items-center gap-1.5 text-3xl'>
                   {group.occasions.map(o => (
@@ -68,7 +61,7 @@ export function SpecialDates() {
                 </p>
               </motion.button>
             ))}
-          </div>
+          </HorizontalScroller>
         </div>
       </div>
     </section>

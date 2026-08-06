@@ -68,7 +68,7 @@ export function ContactForm({ className }: { className?: string }) {
           />
         </Field>
       </div>
-      <Button type='submit' size='lg' className='mt-6 w-full sm:w-auto'>
+      <Button type='submit' size='lg' className='mt-6 w-full sm:w-auto cursor-pointer'>
         Enviar mensaje 💝
       </Button>
     </form>

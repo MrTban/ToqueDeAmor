@@ -34,16 +34,12 @@ const STEPS = [
 
 export function Personalization() {
   return (
-    <section id='personaliza' className='relative overflow-hidden bg-ink py-28'>
-      <div className='pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl' />
-      <div className='pointer-events-none absolute -bottom-24 left-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl' />
-
+    <section id='personaliza' className='relative overflow-hidden bg-secondary/40 py-28'>
       <div className='relative mx-auto max-w-7xl px-6 lg:px-10'>
         <SectionHeading
           eyebrow='¿Cómo funciona?'
           title='Tu regalo, en cuatro pasos'
           description='De la idea a la puerta de tu persona favorita. Nosotros nos encargamos de todo.'
-          light
         />
 
         <div className='mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
@@ -54,17 +50,17 @@ export function Personalization() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className='relative rounded-2xl border border-paper/10 bg-paper/4 p-6 flex flex-col'
+              className='relative rounded-2xl border border-primary/15 bg-card p-6 text-left flex flex-col shadow-sm'
             >
-              <span className='font-display text-4xl text-primary/40'>{step.num}</span>
+              <span className='font-display text-4xl text-primary'>{step.num}</span>
 
               {/* imagen mascota — encuadrada al fondo de la card */}
               <div className='my-4 flex justify-center'>
                 <img src={step.image} alt={step.alt} className='h-32 w-auto object-contain drop-shadow-lg' />
               </div>
 
-              <h3 className='text-lg text-paper'>{step.title}</h3>
-              <p className='mt-2 text-sm leading-relaxed text-paper/65'>{step.text}</p>
+              <h3 className='text-lg text-ink'>{step.title}</h3>
+              <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>{step.text}</p>
 
               {i < STEPS.length - 1 && (
                 <div className='absolute -right-3 top-1/2 hidden h-px w-6 -translate-y-1/2 bg-paper/15 lg:block' />

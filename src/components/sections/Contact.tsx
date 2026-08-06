@@ -33,7 +33,7 @@ export function Contact() {
             />
             <button
               onClick={() => navigate('/contacto')}
-              className='group mb-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary'
+              className='group mb-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary cursor-pointer'
             >
               Ver página de contacto completa
               <ArrowUpRight className='h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />

@@ -75,7 +75,7 @@ export function Header() {
               <li key={link.to}>
                 <button
                   onClick={() => goToSection(link.to)}
-                  className='text-sm font-medium text-foreground/80 transition-colors hover:text-primary'
+                  className='text-sm font-medium text-foreground/80 transition-colors hover:text-primary cursor-pointer'
                 >
                   {link.label}
                 </button>
@@ -86,7 +86,7 @@ export function Header() {
 
         <div className='hidden items-center gap-3 md:flex'>
           <LiveStatusBadge />
-          <Button size='sm' onClick={() => navigate('/contacto')}>
+          <Button size='sm' className='cursor-pointer' onClick={() => navigate('/contacto')}>
             Crear mi regalo
           </Button>
         </div>
@@ -137,7 +137,7 @@ export function Header() {
               )}
               <li className='pt-2'>
                 <Button
-                  className='w-full'
+                  className='w-full cursor-pointer'
                   onClick={() => {
                     setOpen(false)
                     navigate('/contacto')

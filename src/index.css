@@ -38,12 +38,14 @@
 }
 
 /*
-  Paleta — Detallar
-  ink       #120014  negro cálido (texto sobre claro, bloques oscuros)
-  paper     #fff6f9  blanco roto, fondo cálido
-  primary   #fe0175  magenta de marca, CTAs y acentos
-  secondary #ffc2dd  rosa suave, soporte y fondos de tarjeta
-  muted     #fde7ef  rosa polvo, separadores y fondos sutiles
+  Paleta — Toque De Amor
+  background #fff6f9  blanco cálido (fondo general)
+  foreground #1c0410  negro cálido (texto
+  ink        #120014  negro cálido (texto sobre claro, bloques oscuros)
+  paper      #fff6f9  blanco roto, fondo cálido
+  primary    #fe0175  magenta de marca, CTAs y acentos
+  secondary  #ffc2dd  rosa suave, soporte y fondos de tarjeta
+  muted      #fde7ef  rosa polvo, separadores y fondos sutiles
 */
 :root {
   --background: #fff6f9;

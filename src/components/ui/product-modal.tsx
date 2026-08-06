@@ -146,7 +146,7 @@ export function ProductModal({ selection, onClose }: ProductModalProps) {
                 <button
                   onClick={onClose}
                   aria-label='Cerrar'
-                  className='absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-ink/25 text-white backdrop-blur-sm hover:bg-ink/45 transition-colors'
+                  className='absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-ink/25 text-white backdrop-blur-sm hover:bg-ink/45 transition-colors cursor-pointer'
                 >
                   <X className='h-4 w-4' />
                 </button>
@@ -182,7 +182,7 @@ export function ProductModal({ selection, onClose }: ProductModalProps) {
                 <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
                   <Button
                     size='lg'
-                    className='flex-1'
+                    className='flex-1 cursor-pointer'
                     onClick={() => {
                       onClose()
                       // Confirmamos la elección antes de saltar al formulario —
@@ -202,7 +202,7 @@ export function ProductModal({ selection, onClose }: ProductModalProps) {
                   >
                     ¡Lo quiero!
                   </Button>
-                  <Button size='lg' variant='outline' onClick={onClose} className='flex-1'>
+                  <Button size='lg' variant='outline' onClick={onClose} className='flex-1 cursor-pointer'>
                     Seguir viendo
                   </Button>
                 </div>

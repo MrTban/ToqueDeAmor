@@ -88,12 +88,14 @@ export function Hero() {
           >
             <Button
               size='lg'
+              className='cursor-pointer'
               onClick={() => document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Ver catálogo
             </Button>
             <Button
               size='lg'
+              className='cursor-pointer'
               variant='outline'
               onClick={() => document.getElementById('personaliza')?.scrollIntoView({ behavior: 'smooth' })}
             >

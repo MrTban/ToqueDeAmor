@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/ui/product-card'
 import { ProductModal, type ModalSelection } from '@/components/ui/product-modal'
 import { ProductCardSkeleton } from '@/components/ui/skeleton'
+import { HorizontalScroller } from '@/components/ui/horizontal-scroller'
 import { cn } from '@/lib/utils'
 import { PRODUCTS, CATEGORIES, type Product } from '@/lib/products'
 
@@ -74,26 +75,23 @@ export function CatalogPage() {
           </p>
         </motion.div>
 
-        {/* filtros — degradado a la derecha insinúa que hay más para scrollear */}
-        <div className='relative mt-10'>
-          <div className='no-scrollbar flex gap-2 overflow-x-auto pb-2'>
-            {CATEGORIES.map(cat => (
-              <button
-                key={cat}
-                onClick={() => changeCategory(cat)}
-                className={cn(
-                  'shrink-0 rounded-full px-5 py-2 text-sm font-semibold capitalize transition-colors',
-                  active === cat
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground hover:bg-secondary',
-                )}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-          <div className='pointer-events-none absolute right-0 top-0 bottom-2 w-10 bg-linear-to-l from-background to-transparent' />
-        </div>
+        {/* filtros — degradados dinámicos + empujoncito insinúan que hay más para scrollear */}
+        <HorizontalScroller className='mt-10' contentClassName='flex gap-2 pb-2' showArrows={false}>
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => changeCategory(cat)}
+              className={cn(
+                'shrink-0 rounded-full px-5 py-2 text-sm font-semibold capitalize transition-colors cursor-pointer',
+                active === cat
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:bg-secondary',
+              )}
+            >
+              {cat}
+            </button>
+          ))}
+        </HorizontalScroller>
 
         {/* grid — SIN LayoutGroup, sin layoutId */}
         <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>

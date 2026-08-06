@@ -45,7 +45,7 @@ export function Catalog() {
             title='Los favoritos de quienes regalan con intención'
             description='Toca cualquier pieza para ver todos los detalles y empezar a personalizarla.'
           />
-          <Button variant='outline' className='shrink-0' onClick={() => navigate('/catalogo')}>
+          <Button variant='outline' className='shrink-0 cursor-pointer' onClick={() => navigate('/catalogo')}>
             Ver catálogo completo
           </Button>
         </div>
@@ -106,11 +106,7 @@ export function SectionHeading({
       className='max-w-2xl'
     >
       <Badge variant={light ? 'solid' : 'primary'}>{eyebrow}</Badge>
-      <h2
-        className={`mt-4 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl ${
-          light ? 'text-paper' : 'text-ink'
-        }`}
-      >
+      <h2 className={`mt-4 text-4xl leading-tight tracking-tight sm:text-5xl ${light ? 'text-paper' : 'text-ink'}`}>
         {title}
       </h2>
       {description && (
