@@ -18,7 +18,21 @@ export function ScrollToTop() {
 
   useEffect(() => {
     if (hash) return
-    window.scrollTo(0, 0)
+
+    // requestAnimationFrame: si la navegación ocurrió justo cuando se
+    // estaba liberando un scroll-lock (ej: al cerrar el menú mobile),
+    // esperamos un frame para que el unlock ya esté aplicado.
+    const raf = requestAnimationFrame(() => {
+      // behavior:"instant" es intencional y necesario acá — el proyecto
+      // tiene `scroll-behavior: smooth` global en <html> (para los anchors
+      // internos tipo /#fechas), y esa propiedad CSS también afecta las
+      // llamadas a scrollTo() que no especifican behavior explícito. Sin
+      // este override, cada cambio de página quedaba ~800ms deslizando
+      // suavemente hacia arriba en vez de aparecer ya arriba — lento y
+      // parecía "no funcionar" si se revisaba antes de que terminara.
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    })
+    return () => cancelAnimationFrame(raf)
   }, [pathname, hash])
 
   return null
