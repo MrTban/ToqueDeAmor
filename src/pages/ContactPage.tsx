@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Copy, Mail, MapPin, Sparkles } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { sileo } from 'sileo'

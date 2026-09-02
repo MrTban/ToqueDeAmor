@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { AtSign, Heart, MessageCircle } from 'lucide-react'
 import { sileo } from 'sileo'
 

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useNavigate } from 'react-router-dom'
 import { Mail, AtSign, MessageCircle, ArrowUpRight, Copy } from 'lucide-react'
 import { sileo } from 'sileo'

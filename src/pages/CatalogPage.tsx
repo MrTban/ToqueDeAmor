@@ -1,5 +1,5 @@
 import { useState, useEffect, useTransition } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Sparkles } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { sileo } from 'sileo'
