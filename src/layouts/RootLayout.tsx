@@ -7,6 +7,7 @@ import { Footer } from '@/components/sections/Footer'
 import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button'
 
 import { initAnalytics, trackPageview } from '@/lib/analytics'
+import Pointer from '@/components/Pointer'
 
 export function RootLayout() {
   const location = useLocation()
@@ -25,6 +26,8 @@ export function RootLayout() {
 
   return (
     <div className='min-h-screen bg-background font-sans antialiased'>
+      <Pointer />
+
       <Toaster
         position='top-right'
         offset={{ top: 100 }}
