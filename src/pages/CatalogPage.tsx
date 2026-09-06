@@ -1,24 +1,48 @@
-import { useState, useEffect, useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Sparkles } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { sileo } from 'sileo'
+
 import { Seo } from '@/components/Seo'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { HorizontalScroller } from '@/components/ui/horizontal-scroller'
 import { ProductCard } from '@/components/ui/product-card'
 import { ProductModal, type ModalSelection } from '@/components/ui/product-modal'
 import { ProductCardSkeleton } from '@/components/ui/skeleton'
-import { HorizontalScroller } from '@/components/ui/horizontal-scroller'
+
+import { CATEGORIES, PRODUCTS, type Product } from '@/lib/products'
 import { cn } from '@/lib/utils'
-import { PRODUCTS, CATEGORIES, type Product } from '@/lib/products'
+
+type Category = (typeof CATEGORIES)[number]
+
+function isValidCategory(value: string | null): value is Category {
+  return !!value && (CATEGORIES as readonly string[]).includes(value)
+}
 
 export function CatalogPage() {
   const navigate = useNavigate()
-  const [active, setActive] = useState<(typeof CATEGORIES)[number]>('todos')
+  const [searchParams, setSearchParams] = useSearchParams()
   const [selection, setSelection] = useState<ModalSelection | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [, startTransition] = useTransition()
+
+  // La categoría activa vive en la URL (?categoria=tarjetas), no en un
+  // useState local — así el filtro es compartible, sobrevive un refresh,
+  // y otras páginas (como la home) pueden linkear directo a un filtro ya
+  // aplicado. Si el query param no existe o trae un valor inválido, cae
+  // a "todos" sin romper nada.
+  const rawParam = searchParams.get('categoria')
+  const active: Category = isValidCategory(rawParam) ? rawParam : 'todos'
+
+  // Si alguien entra con un valor inválido en la URL (?categoria=asdf),
+  // lo limpiamos para que la URL quede consistente con lo que se ve.
+  useEffect(() => {
+    if (rawParam && !isValidCategory(rawParam)) {
+      setSearchParams({}, { replace: true })
+    }
+  }, [rawParam]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const t = setTimeout(() => setIsLoading(false), 750)
@@ -27,13 +51,17 @@ export function CatalogPage() {
 
   const filtered = active === 'todos' ? PRODUCTS : PRODUCTS.filter(p => p.category === active)
 
-  function changeCategory(cat: (typeof CATEGORIES)[number]) {
+  function changeCategory(cat: Category) {
     setIsLoading(true)
-    startTransition(() => setActive(cat))
+    startTransition(() => {
+      if (cat === 'todos') {
+        setSearchParams({}, { replace: false })
+      } else {
+        setSearchParams({ categoria: cat }, { replace: false })
+      }
+    })
     setTimeout(() => {
       setIsLoading(false)
-      // Aviso defensivo: si una categoría queda sin productos, avisamos
-      // en vez de mostrar un grid vacío sin explicación.
       const count = cat === 'todos' ? PRODUCTS.length : PRODUCTS.filter(p => p.category === cat).length
       if (count === 0) {
         sileo.info({
