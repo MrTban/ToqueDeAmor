@@ -68,9 +68,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className='font-display mt-6 text-5xl leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl'
           >
-            Un regalo que
+            Sorpresas que abrazan el
             <span className='mt-1 block italic text-primary'>
-              <SparklesText text='grita su nombre.' sparklesCount={12} />
+              <SparklesText sparklesCount={8}>Corazón</SparklesText>
             </span>
           </motion.h1>
 
@@ -99,11 +99,12 @@ export function Hero() {
             </Button> */}
             <Button
               size='lg'
-              className='cursor-pointer'
+              className='group cursor-pointer'
               variant='outline'
               onClick={() => document.getElementById('personaliza')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Cómo personalizo el mío
+              <ArrowDown className='h-3 w-3 -translate-x-0.5 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100' />
             </Button>
           </motion.div>
         </div>
@@ -127,7 +128,7 @@ export function Hero() {
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.8, repeat: Infinity }}
-        className='absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground'
+        className='absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground z-10'
       >
         <ArrowDown
           className='h-5 w-5 cursor-pointer'
