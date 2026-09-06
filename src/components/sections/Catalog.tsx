@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/ui/product-card'
 import { ProductModal, type ModalSelection } from '@/components/ui/product-modal'
 import { ProductCardSkeleton } from '@/components/ui/skeleton'
 import { PRODUCTS, type Product } from '@/lib/products'
+import { ArrowRight, Balloon, Gift, Package, SquareDashedText } from 'lucide-react'
 
 const container = {
   hidden: {},
@@ -20,6 +21,12 @@ const item = {
     transition: { duration: 0.5, ease: 'easeOut' as const },
   },
 }
+const QUICK_CATEGORIES = [
+  { key: 'tarjetas', label: 'Tarjetas', icon: SquareDashedText },
+  { key: 'globos', label: 'Globos', icon: Balloon },
+  { key: 'anchetas', label: 'Anchetas', icon: Gift },
+  { key: 'kits', label: 'Kits', icon: Package },
+] as const
 
 export function Catalog() {
   const navigate = useNavigate()
@@ -48,6 +55,23 @@ export function Catalog() {
           <Button variant='outline' className='shrink-0 cursor-pointer' onClick={() => navigate('/catalogo')}>
             Ver catálogo completo
           </Button>
+        </div>
+
+        {/* Acceso rápido por categoría — cada pill linkea al catálogo
+            completo ya filtrado (/catalogo?categoria=X), sin pisar el
+            botón de arriba que lleva al catálogo sin filtrar. */}
+        <div className='mt-6 flex flex-wrap gap-2.5'>
+          {QUICK_CATEGORIES.map(({ key, label, icon: Icon }) => (
+            <Link
+              key={key}
+              to={`/catalogo?categoria=${key}`}
+              className='group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/40 hover:text-primary'
+            >
+              <Icon className='h-3.5 w-3.5' />
+              {label}
+              <ArrowRight className='h-3 w-3 -translate-x-0.5 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100' />
+            </Link>
+          ))}
         </div>
 
         {/* SIN LayoutGroup — los cards no participan en layout tracking global */}
