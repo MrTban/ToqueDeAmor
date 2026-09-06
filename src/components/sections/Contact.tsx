@@ -2,27 +2,33 @@ import { motion } from 'motion/react'
 import { useNavigate } from 'react-router-dom'
 import { Mail, AtSign, MessageCircle, ArrowUpRight, Copy } from 'lucide-react'
 import { sileo } from 'sileo'
+
 import { SectionHeading } from './Catalog'
-import { ContactForm } from './ContactForm'
 
 export function Contact() {
   const navigate = useNavigate()
 
   return (
     <section id='contacto' className='relative bg-background py-28'>
-      <div className='mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10'>
+      <div className='mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 lg:grid-cols-[1fr_1fr] lg:px-10'>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className='mt-10 space-y-4'
+        >
+          <ContactRow icon={Mail} label='toquedeamor.regalos@gmail.com' copyValue='toquedeamor.regalos@gmail.com' />
+          <ContactRow icon={MessageCircle} label='WhatsApp disponible' />
+          <ContactRow icon={AtSign} label='@toquedeamor.es' copyValue='@toquedeamor.es' />
+        </motion.div>
+
         <div>
           <SectionHeading
             eyebrow='Contacto'
             title='¿Ya sabes para quién es?'
             description='Cuéntanos la ocasión y te preparamos una propuesta personalizada en menos de 2 horas.'
           />
-
-          <div className='mt-10 space-y-4'>
-            <ContactRow icon={Mail} label='toquedeamor.regalos@gmail.com' copyValue='toquedeamor.regalos@gmail.com' />
-            <ContactRow icon={MessageCircle} label='WhatsApp disponible' />
-            <ContactRow icon={AtSign} label='@toquedeamor.es' copyValue='@toquedeamor.es' />
-          </div>
 
           {/* mascota chat — refuerza el canal WhatsApp */}
           <div className='mt-8 flex items-end gap-4'>
@@ -40,15 +46,6 @@ export function Contact() {
             </button>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-        >
-          <ContactForm />
-        </motion.div>
       </div>
     </section>
   )
