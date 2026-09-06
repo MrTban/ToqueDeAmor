@@ -8,7 +8,7 @@ export function ProductCardSkeleton() {
   return (
     <div className='overflow-hidden rounded-2xl border border-border bg-card'>
       {/* imagen */}
-      <Skeleton className='aspect-[4/5] w-full rounded-none' />
+      <Skeleton className='aspect-4/5 w-full rounded-none' />
       {/* info */}
       <div className='space-y-2.5 p-5'>
         <Skeleton className='h-5 w-20 rounded-full' />
