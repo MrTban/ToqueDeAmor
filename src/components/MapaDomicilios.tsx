@@ -83,7 +83,7 @@ export function MapaDomicilios() {
         maxZoom={12}
         scrollWheelZoom={true}
         style={{ borderRadius: 10 }}
-        className='h-full w-full bg-slate-50'
+        className='h-full w-full bg-slate-50 z-0'
         maxBounds={boundsTenerife}
         maxBoundsViscosity={1.0}
       >
