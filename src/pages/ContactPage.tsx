@@ -9,6 +9,7 @@ import { InstagramWidget, WhatsAppWidget } from '@/components/sections/SocialWid
 import { Badge } from '@/components/ui/badge'
 import { BusinessHoursCard } from '@/components/ui/live-status'
 import { WidgetSkeleton } from '@/components/ui/skeleton'
+import { MapaDomicilios } from '@/components/MapaDomicilios'
 
 export function ContactPage() {
   const [widgetsReady, setWidgetsReady] = useState(false)
@@ -19,7 +20,7 @@ export function ContactPage() {
   }, [])
 
   return (
-    <section className='bg-background pt-36 h-dvh'>
+    <section className='bg-background pt-36 pb-28'>
       <Seo
         title='Contacto'
         description='Cuéntanos para quién es y lo preparamos con amor. Escríbenos por WhatsApp, Instagram o el formulario.'
@@ -34,18 +35,41 @@ export function ContactPage() {
         >
           <Badge variant='primary'>
             <Sparkles className='h-3.5 w-3.5' />
+            Domicilios en Tenerife
+          </Badge>
+          <h1 className='mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl'>
+            Consulta el precio de tu domicilio
+          </h1>
+          <p className='mt-4 text-lg text-muted-foreground'>
+            Busca la zona en la que deseas recibir tu domicilio y consulta su precio
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className='my-14'
+        >
+          <MapaDomicilios />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className='max-w-2xl'
+        >
+          <Badge variant='primary'>
+            <Sparkles className='h-3.5 w-3.5' />
             Hablemos de tu regalo
           </Badge>
           <h1 className='mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl'>
             Cuéntanos para quién es y lo preparamos con amor
           </h1>
-          <p className='mt-4 text-lg text-muted-foreground'>
-            Escríbenos por WhatsApp, Instagram o este formulario. Respondemos rápido — de lunes a sábado.
-          </p>
+          <p className='mt-4 text-lg text-muted-foreground'>Escríbenos por WhatsApp o Instagram.</p>
         </motion.div>
-
         <div className='mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_0.85fr]'>
-          {/* formulario */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
