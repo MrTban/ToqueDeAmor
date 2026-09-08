@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
+import { GeoJSON, MapContainer, TileLayer } from 'react-leaflet'
 
-// Importa tu JSON directamente
-import tenerifeData from '@/lib/tenerife-zonas.json'
 import { useTheme } from '@/hooks/useTheme'
+
+import tenerifeData from '@/lib/tenerife-zonas.json'
 
 const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY
 
-// Definición local de tipos para no depender del paquete 'geojson'
 interface MunicipioProperties {
   AREA_GIS?: number
   PERIM_GIS?: number
@@ -16,12 +13,6 @@ interface MunicipioProperties {
   NOMBRE: string
   PRICE: number
   COLOR: string
-}
-
-interface ZonaSeleccionada {
-  nombre: string
-  precio: number
-  color: string
 }
 
 export function MapaDomicilios() {
