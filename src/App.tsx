@@ -15,8 +15,8 @@ function App() {
           <Route path='/catalogo' element={<CatalogPage />} />
           <Route path='/contacto' element={<ContactPage />} />
           <Route path='/calendario' element={<CalendarPage />} />
-          <Route path='*' element={<NotFoundPage />} />
         </Route>
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
