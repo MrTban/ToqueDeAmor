@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Badge } from '@/components/ui/badge'
+import { ArrowRight, Balloon, Gift, Package, SquareDashedText } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/ui/product-card'
 import { ProductModal, type ModalSelection } from '@/components/ui/product-modal'
 import { ProductCardSkeleton } from '@/components/ui/skeleton'
-import { PRODUCTS, type Product } from '@/lib/products'
-import { ArrowRight, Balloon, Gift, Package, SquareDashedText } from 'lucide-react'
 import { SectionHeading } from '../SectionHeading'
+
+import { PRODUCTS, type Product } from '@/lib/products'
 
 const container = {
   hidden: {},
