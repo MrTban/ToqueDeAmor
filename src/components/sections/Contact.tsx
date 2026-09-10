@@ -2,8 +2,7 @@ import { motion } from 'motion/react'
 import { useNavigate } from 'react-router-dom'
 import { Mail, AtSign, MessageCircle, ArrowUpRight, Copy } from 'lucide-react'
 import { sileo } from 'sileo'
-
-import { SectionHeading } from './Catalog'
+import { SectionHeading } from '../SectionHeading'
 
 export function Contact() {
   const navigate = useNavigate()

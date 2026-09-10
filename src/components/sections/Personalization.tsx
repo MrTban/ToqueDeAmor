@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { SectionHeading } from './Catalog'
+import { SectionHeading } from '../SectionHeading'
 
 const STEPS = [
   {

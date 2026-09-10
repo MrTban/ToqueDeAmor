@@ -1,9 +1,9 @@
 import { motion } from 'motion/react'
 import { useNavigate } from 'react-router-dom'
-import { SectionHeading } from './Catalog'
 import { Button } from '@/components/ui/button'
 import { HorizontalScroller } from '@/components/ui/horizontal-scroller'
 import { getResolvedOccasions, groupByExactDate, formatLongDate } from '@/lib/occasions'
+import { SectionHeading } from '../SectionHeading'
 
 // Solo mostramos las próximas 5 fechas (agrupadas por día exacto) — el
 // calendario completo con las 16 ocasiones del año vive en /calendario.
