@@ -8,6 +8,7 @@ import { ProductModal, type ModalSelection } from '@/components/ui/product-modal
 import { ProductCardSkeleton } from '@/components/ui/skeleton'
 import { PRODUCTS, type Product } from '@/lib/products'
 import { ArrowRight, Balloon, Gift, Package, SquareDashedText } from 'lucide-react'
+import { SectionHeading } from '../SectionHeading'
 
 const container = {
   hidden: {},
@@ -110,32 +111,32 @@ export function Catalog() {
   )
 }
 
-export function SectionHeading({
-  eyebrow,
-  title,
-  description,
-  light,
-}: {
-  eyebrow: string
-  title: string
-  description?: string
-  light?: boolean
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.6 }}
-      className='max-w-2xl'
-    >
-      <Badge variant={light ? 'solid' : 'primary'}>{eyebrow}</Badge>
-      <h2 className={`mt-4 text-4xl leading-tight tracking-tight sm:text-5xl ${light ? 'text-paper' : 'text-ink'}`}>
-        {title}
-      </h2>
-      {description && (
-        <p className={`mt-4 text-lg ${light ? 'text-paper/70' : 'text-muted-foreground'}`}>{description}</p>
-      )}
-    </motion.div>
-  )
-}
+// export function SectionHeading({
+//   eyebrow,
+//   title,
+//   description,
+//   light,
+// }: {
+//   eyebrow: string
+//   title: string
+//   description?: string
+//   light?: boolean
+// }) {
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0, y: 24 }}
+//       whileInView={{ opacity: 1, y: 0 }}
+//       viewport={{ once: true, amount: 0.5 }}
+//       transition={{ duration: 0.6 }}
+//       className='max-w-2xl'
+//     >
+//       <Badge variant={light ? 'solid' : 'primary'}>{eyebrow}</Badge>
+//       <h2 className={`mt-4 text-4xl leading-tight tracking-tight sm:text-5xl ${light ? 'text-paper' : 'text-ink'}`}>
+//         {title}
+//       </h2>
+//       {description && (
+//         <p className={`mt-4 text-lg ${light ? 'text-paper/70' : 'text-muted-foreground'}`}>{description}</p>
+//       )}
+//     </motion.div>
+//   )
+// }
