@@ -1,8 +1,10 @@
-import { motion } from 'motion/react'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'motion/react'
 import { Mail, AtSign, MessageCircle, ArrowUpRight, Copy } from 'lucide-react'
 import { sileo } from 'sileo'
-import { SectionHeading } from '../SectionHeading'
+
+import { SectionHeading } from '@/components/SectionHeading'
+import { Button } from '@/components/ui/button'
 
 export function Contact() {
   const navigate = useNavigate()
@@ -36,13 +38,10 @@ export function Contact() {
               alt='Escríbenos por WhatsApp'
               className='h-28 w-auto object-contain drop-shadow-md'
             />
-            <button
-              onClick={() => navigate('/contacto')}
-              className='group mb-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary cursor-pointer'
-            >
+            <Button variant='primary' onClick={() => navigate('/contacto')} className='group shrink-0 cursor-pointer'>
               Ver página de contacto completa
               <ArrowUpRight className='h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
-            </button>
+            </Button>
           </div>
         </div>
       </div>

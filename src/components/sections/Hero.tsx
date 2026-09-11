@@ -43,6 +43,7 @@ export function Hero() {
       >
         <GiftTag label='Para Sofía' sub='14 feb' />
       </motion.div>
+
       <motion.div
         style={{ y: yTagRight }}
         className='pointer-events-none absolute right-[8%] top-[19%] hidden rotate-6 animate-float md:block [animation-delay:1.2s]'
@@ -100,11 +101,11 @@ export function Hero() {
             <Button
               size='lg'
               className='group cursor-pointer'
-              variant='outline'
+              variant='primary'
               onClick={() => document.getElementById('personaliza')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Cómo personalizo el mío
-              <ArrowDown className='h-3 w-3 -translate-x-0.5 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100' />
+              <ArrowDown className='h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
             </Button>
           </motion.div>
         </div>

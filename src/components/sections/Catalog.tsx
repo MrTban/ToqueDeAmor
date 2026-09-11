@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/ui/product-card'
 import { ProductModal, type ModalSelection } from '@/components/ui/product-modal'
 import { ProductCardSkeleton } from '@/components/ui/skeleton'
-import { SectionHeading } from '../SectionHeading'
+import { SectionHeading } from '@/components/SectionHeading'
 
 import { PRODUCTS, type Product } from '@/lib/products'
 
@@ -54,8 +54,9 @@ export function Catalog() {
             title='Los favoritos de quienes regalan con intención'
             description='Toca cualquier pieza para ver todos los detalles y empezar a personalizarla.'
           />
-          <Button variant='outline' className='shrink-0 cursor-pointer' onClick={() => navigate('/catalogo')}>
+          <Button variant='primary' className='group shrink-0 cursor-pointer' onClick={() => navigate('/catalogo')}>
             Ver catálogo completo
+            <ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
           </Button>
         </div>
 
