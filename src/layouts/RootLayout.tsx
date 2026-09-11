@@ -2,12 +2,13 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Toaster } from 'sileo'
 
-import { Header } from '@/components/sections/Header'
+import Pointer from '@/components/Pointer'
 import { Footer } from '@/components/sections/Footer'
+import { Header } from '@/components/sections/Header'
 import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button'
 
 import { initAnalytics, trackPageview } from '@/lib/analytics'
-import Pointer from '@/components/Pointer'
+import { ScrollToTop } from '@/components/ScrollToTop'
 
 export function RootLayout() {
   const location = useLocation()
@@ -46,6 +47,7 @@ export function RootLayout() {
 
       <Footer />
 
+      <ScrollToTop />
       <ScrollToTopButton />
     </div>
   )
