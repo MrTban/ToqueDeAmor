@@ -5,6 +5,8 @@ import { CatalogPage } from '@/pages/CatalogPage'
 import { ContactPage } from '@/pages/ContactPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { CalendarPage } from './pages/CalendarPage'
+import { PrivacyPage } from './pages/PrivacyPage'
+import { AboutPage } from './pages/AboutPAge'
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path='/catalogo' element={<CatalogPage />} />
           <Route path='/contacto' element={<ContactPage />} />
           <Route path='/calendario' element={<CalendarPage />} />
+          <Route path='/nosotros' element={<AboutPage />} />
+          <Route path='/politicas' element={<PrivacyPage />} />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
