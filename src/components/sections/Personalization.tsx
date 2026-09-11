@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
-import { SectionHeading } from '../SectionHeading'
+
+import { SectionHeading } from '@/components/SectionHeading'
 
 const STEPS = [
   {
@@ -34,7 +35,7 @@ const STEPS = [
 
 export function Personalization() {
   return (
-    <section id='personaliza' className='relative overflow-hidden bg-secondary/40 py-28'>
+    <section id='personaliza' className='relative overflow-hidden bg-secondary/60 py-28'>
       <div className='relative mx-auto max-w-7xl px-6 lg:px-10'>
         <SectionHeading
           eyebrow='¿Cómo funciona?'
