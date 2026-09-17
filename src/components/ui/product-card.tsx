@@ -38,7 +38,7 @@ export function ProductCard({ product: p, onSelect }: ProductCardProps) {
             <span className={`font-display select-none text-7xl italic ${p.accentColor}`}>{p.name.charAt(0)}</span>
           )}
           <div className='absolute bottom-3 right-3 rounded-full bg-card/90 px-3 py-1'>
-            <span className='text-xs font-semibold text-primary'>{p.price}</span>
+            <span className='text-xl font-bold text-primary'>{p.price}</span>
           </div>
         </div>
 

@@ -4,10 +4,13 @@ import { motion, AnimatePresence } from 'motion/react'
 import { X, Clock, CheckCircle2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { sileo } from 'sileo'
-import { trackEvent } from '@/lib/analytics'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+
+import { trackEvent } from '@/lib/analytics'
 import type { Product } from '@/lib/products'
+import { SITE } from '@/lib/site-config'
 
 export interface ModalSelection {
   product: Product
@@ -120,12 +123,12 @@ export function ProductModal({ selection, onClose }: ProductModalProps) {
                 opacity: { duration: 0 },
                 borderRadius: { type: 'tween', duration: 0.22, ease: 'easeOut' },
               }}
-              className='relative w-full overflow-hidden bg-card shadow-2xl pointer-events-auto sm:max-w-lg'
+              className='relative w-full overflow-hidden bg-card shadow-2xl pointer-events-auto sm:max-w-4xl'
               style={{ originX: 0.5, originY: 0.5 }}
             >
               {/* Imagen */}
               <div
-                className={`relative flex h-56 items-center justify-center overflow-hidden bg-linear-to-br ${selection.product.gradient} sm:h-64`}
+                className={`relative flex h-80 items-center justify-center overflow-hidden bg-linear-to-br ${selection.product.gradient} sm:h-200`}
               >
                 {selection.product.image ? (
                   <img
@@ -140,7 +143,7 @@ export function ProductModal({ selection, onClose }: ProductModalProps) {
                 )}
 
                 <div className='absolute bottom-4 right-4 rounded-full bg-card/95 px-4 py-1.5 shadow'>
-                  <span className='text-sm font-bold text-primary'>{selection.product.price}</span>
+                  <span className='text-3xl font-bold text-primary'>{selection.product.price}</span>
                 </div>
 
                 <button
@@ -162,18 +165,18 @@ export function ProductModal({ selection, onClose }: ProductModalProps) {
                 <Badge variant='primary' className='mb-3'>
                   {selection.product.tag}
                 </Badge>
-                <h2 className='text-2xl text-ink sm:text-3xl'>{selection.product.name}</h2>
-                <div className='mt-1 flex items-center gap-1.5 text-xs text-muted-foreground'>
-                  <Clock className='h-3.5 w-3.5' />
+                <h2 className='text-2xl text-ink sm:text-4xl'>{selection.product.name}</h2>
+                <div className='mt-1 flex items-center gap-1.5 text-sm text-muted-foreground'>
+                  <Clock className='h-4 w-4' />
                   {selection.product.deliveryTime}
                 </div>
 
-                <p className='mt-4 text-sm leading-relaxed text-muted-foreground'>{selection.product.description}</p>
+                <p className='mt-4 text-md leading-relaxed text-muted-foreground'>{selection.product.description}</p>
 
                 <ul className='mt-4 grid grid-cols-2 gap-2'>
                   {selection.product.features.map(f => (
-                    <li key={f} className='flex items-start gap-2 text-xs text-foreground/80'>
-                      <CheckCircle2 className='mt-0.5 h-3.5 w-3.5 shrink-0 text-primary' />
+                    <li key={f} className='flex items-center gap-2 text-sm text-foreground/80'>
+                      <CheckCircle2 className='h-4 w-4 shrink-0 text-primary' />
                       {f}
                     </li>
                   ))}
@@ -182,27 +185,52 @@ export function ProductModal({ selection, onClose }: ProductModalProps) {
                 <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
                   <Button
                     size='lg'
-                    className='flex-1 cursor-pointer'
+                    className='flex-1 cursor-pointer p-2'
                     onClick={() => {
                       onClose()
-                      // Confirmamos la elección antes de saltar al formulario —
-                      // sirve como recordatorio de qué producto estaba viendo.
-                      sileo.success({
-                        title: `🎁 ${selection.product.name}`,
-                        description: 'Te llevamos al formulario para coordinar los detalles.',
-                        duration: 3500,
+
+                      // 1. Definimos el mensaje personalizado con el nombre del producto
+                      const productName = selection.product.name
+                      // const message = `¡Hola! Me interesa este producto y quiero coordinar los detalles: *${productName}*`
+                      const message = [
+                        `¡Hola, Toque de Amor! ➔`,
+                        ``,
+                        `Me interesa coordinar los detalles de este producto:`,
+                        `  ✦ Producto: *${selection.product.name}*`,
+                        `  ✦ Categoría: ${selection.product.category}`,
+                        `  ✦ Precio: $${selection.product.price}`,
+                        ``,
+                        `¿Me darían más información por favor? Quedo atento/a.`,
+                      ].join('\n')
+
+                      // 2. Construimos la URL de WhatsApp con el teléfono de SITE y el mensaje codificado
+                      // Asegúrate de que SITE.social.whatsapp contenga el número o la URL base correcta.
+                      // Si SITE.social.whatsapp es algo como 'https://wa.me/5491122334455', podemos añadirle el ?text=...
+                      const whatsappUrl = `${SITE.social.whatsapp}?text=${encodeURIComponent(message)}`
+
+                      // 3. Mostramos la notificación visual
+                      sileo.info({
+                        title: 'Abriendo WhatsApp…',
+                        description: `Te conectamos con el chat para "${productName}"`,
+                        duration: 2000,
                       })
-                      trackEvent('select_item', {
-                        item_name: selection.product.name,
+
+                      // 4. Registramos el evento en tus analíticas
+                      trackEvent('social_click', {
+                        network: 'whatsapp',
+                        item_name: productName,
                         item_category: selection.product.category,
                         price: selection.product.price,
                       })
-                      navigate('/contacto')
+
+                      // 5. Abrimos WhatsApp en una nueva pestaña
+                      window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
                     }}
                   >
                     ¡Lo quiero!
                   </Button>
-                  <Button size='lg' variant='outline' onClick={onClose} className='flex-1 cursor-pointer'>
+
+                  <Button size='lg' variant='outline' onClick={onClose} className='flex-1 cursor-pointer p-2'>
                     Seguir viendo
                   </Button>
                 </div>
