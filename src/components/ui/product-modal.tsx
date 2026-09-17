@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { X, Clock, CheckCircle2 } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { sileo } from 'sileo'
 
 import { Badge } from '@/components/ui/badge'
@@ -26,7 +25,6 @@ interface ProductModalProps {
 const MODAL_MAX_W = 512
 
 export function ProductModal({ selection, onClose }: ProductModalProps) {
-  const navigate = useNavigate()
   const isFirstRender = useRef(true)
 
   useEffect(() => {

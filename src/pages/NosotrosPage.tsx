@@ -5,7 +5,6 @@ import { Seo } from '@/components/Seo'
 import { Button } from '@/components/ui/button'
 
 import { SITE } from '@/lib/site-config'
-import { SparklesText } from '@/components/ui/sparkles-text'
 
 const GALLERY = [
   {
