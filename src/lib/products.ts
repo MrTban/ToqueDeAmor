@@ -3,15 +3,18 @@ export interface Product {
   name: string
   tag: string
   price: string
-  category: 'todos' | 'anchetas' | 'tarjetas' | 'kits' | 'globos'
+  category: ProductCategory
   rotate: string
   gradient: string
   accentColor: string
   image?: string
+  images?: string[]
   description: string
   deliveryTime: string
   features: string[]
 }
+
+export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number]
 
 export const PRODUCTS: Product[] = [
   {
@@ -198,10 +201,248 @@ export const PRODUCTS: Product[] = [
       'Incluye palo de altura y moño',
     ],
   },
+  {
+    id: 'englobado-artesanal-peluche',
+    name: 'Experiencia Englobado Artesanal con Peluche',
+    tag: 'Especial',
+    price: '85€',
+    category: 'globos',
+    rotate: 'rotate-1',
+    gradient: 'from-pink-100 via-rose-50 to-purple-100',
+    accentColor: 'text-pink-500/50',
+    image: '/images/productos/englobado-peluche.webp',
+    description:
+      'Captura la belleza de regalar un recuerdo inolvidable con nuestra experiencia Englobado Artesanal. Está elaborado a mano con dedicación para transformar un lindo peluche en un auténtico espectáculo visual.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Incluye peluche',
+      'Globo burbuja transparente con lazo',
+      'Elaborado a mano con dedicación',
+      'Ideal para recordar momentos especiales',
+    ],
+  },
+  {
+    id: 'englobado-artesanal-personalizado-camisa',
+    name: 'Experiencia Englobado Artesanal Personalizado',
+    tag: 'Personalizado',
+    price: '+85€',
+    category: 'globos',
+    rotate: '-rotate-2',
+    gradient: 'from-pink-100 via-rose-50 to-amber-100',
+    accentColor: 'text-pink-500/50',
+    image: '/images/productos/englobado-camisa.webp',
+    description:
+      'Transforma una prenda especial, como una camisa, en una sorpresa visual única dentro de nuestro globo burbuja decorado artesanalmente con bases de globos y detalles exclusivos.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Diseño con base de globos decorativos',
+      'Requiere cotización extra',
+      'Personalizado con prenda u objeto especial',
+      'Elaborado a mano con dedicación',
+    ],
+  },
+  {
+    id: 'cartel-personalizado-pequeno',
+    name: 'Cartel Personalizado (25x35 cm)',
+    tag: 'Personalizado',
+    price: '18€',
+    category: 'carteles',
+    rotate: 'rotate-1',
+    gradient: 'from-pink-100 via-rose-50 to-purple-100',
+    accentColor: 'text-pink-500/50',
+    image: '/images/productos/cartel-25x35.webp',
+    description:
+      'Cartel personalizado de 25x35 cm donde tú eliges el mensaje y puedes incluir dibujo impreso o 5 fotos en papel normal.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Tamaño 25cm x 35cm',
+      'Tú eliges el mensaje',
+      'Opción de dibujo impreso o 5 fotos en papel normal',
+      'El tamaño de las fotos se ajusta al espacio',
+      'Fotos adicionales +3€',
+    ],
+  },
+  {
+    id: 'cartel-personalizado-mediano',
+    name: 'Cartel Personalizado (50x70 cm)',
+    tag: 'Popular',
+    price: '35€',
+    category: 'carteles',
+    rotate: '-rotate-2',
+    gradient: 'from-purple-100 via-pink-50 to-rose-100',
+    accentColor: 'text-purple-500/50',
+    image: '/images/productos/cartel-50x70.webp',
+    description:
+      'Cartel personalizado de gran formato (50x70 cm) ideal para dedicatorias especiales, mensajes detallados y recuerdos fotográficos.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Tamaño 50cm x 70cm',
+      'Tú eliges el mensaje',
+      'Opción de dibujo impreso o 5 fotos',
+      'El tamaño de las fotos se ajusta al espacio',
+      'Fotos adicionales +3€',
+    ],
+  },
+  {
+    id: 'cartel-personalizado-grande-mano',
+    name: 'Cartel Personalizado Gigante con Dibujo a Mano',
+    tag: 'Especial',
+    price: '70€',
+    category: 'carteles',
+    rotate: 'rotate-2',
+    gradient: 'from-rose-100 via-pink-50 to-orange-100',
+    accentColor: 'text-rose-500/50',
+    image: '/images/productos/cartel-grande-mano.webp',
+    description:
+      'Cartel de gran formato (50cm x 1.40m aprox) con la opción de incluir un hermoso dibujo pintado a mano para una sorpresa inolvidable.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Tamaño 50cm x 1.40m aprox',
+      'Dibujo pintado a mano disponible (+20€ en tamaño 50cm x 1.40m)',
+      'Mensaje totalmente personalizado',
+      'El tamaño de las fotos se ajusta al espacio',
+      'Fotos adicionales +3€',
+    ],
+  },
+  {
+    id: 'kit-ano-viejo',
+    name: 'Kit Año Viejo Tradicional',
+    tag: 'Tradición',
+    price: 'Desde 18€',
+    category: 'kits',
+    rotate: 'rotate-1',
+    gradient: 'from-amber-100 via-rose-50 to-red-100',
+    accentColor: 'text-amber-500/50',
+    image: '/images/productos/kit-ano-viejo.jpeg',
+    images: [
+      '/images/productos/kit-ano-viejo.jpeg',
+      '/images/productos/kit-ano-viejo-detalle.jpeg',
+      '/images/productos/kit-ano-viejo-personaje_1.jpeg',
+      '/images/productos/kit-ano-viejo-personaje_2.jpg',
+    ],
+    description:
+      'Prepara tu fin de año con un ritual completo, lleno de tradición, amor y prosperidad. Diseñado para cerrar ciclos y atraer las mejores energías para el nuevo año.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Muñeco de aprox. 15cm (2 personajes disponibles)',
+      'Incluye calzón amarillo, lentejas, maleta de viajes y fósforos',
+      'Incluye oración, lista de deseos, vela y bandeja',
+      'Incluye dólar de la suerte y alcohol (No contiene pólvora)',
+      '1 Unid. (18€) / 2 Unid. (32€) / 3 Unid. (46€)',
+      'Hasta agotar existencias',
+    ],
+  },
+  {
+    id: 'velas-personalizadas-pack',
+    name: 'Velas Personalizadas (Pack de 6)',
+    tag: 'Popular',
+    price: '15€',
+    category: 'velas',
+    rotate: 'rotate-1',
+    gradient: 'from-rose-100 via-pink-50 to-amber-100',
+    accentColor: 'text-rose-500/50',
+    image: '/images/productos/velas-personalizadas.jpeg',
+    images: [
+      '/images/productos/velas-personalizadas.jpeg',
+      '/images/productos/velas-personalizadas-caja.jpeg',
+      '/images/productos/velas-personalizadas-detalle.jpeg',
+    ],
+    description:
+      'Ilumina tus intenciones, agradece y manifiesta tus sueños con un ritual mágico, íntimo y completamente personalizado. Elige entre nuestro amplio catálogo de diseños disponibles para crear tu kit perfecto.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Incluye 6 velas personalizadas por paquete',
+      'Cajita en acetato con lazo decorativo',
+      'Incluye fósforos, notica de instrucciones y mini lápiz para escribir tus deseos',
+      'Incluye sticker de regalo (dibujo aleatorio)',
+      'Más de 100 diseños disponibles (solicitar catálogo al realizar el pedido)',
+    ],
+  },
+  {
+    id: 'vela-premium-ano-viejo',
+    name: 'Vela Premium Año Viejo',
+    tag: 'Especial',
+    price: '17€',
+    category: 'velas',
+    rotate: 'rotate-1',
+    gradient: 'from-amber-100 via-rose-50 to-orange-100',
+    accentColor: 'text-amber-500/50',
+    image: '/images/productos/vela-ano-viejo.jpg',
+    description:
+      '¿Listo para cerrar ciclos y atraer la mejor energía para el nuevo año? Nuestra Vela de Año Viejo es el elemento perfecto para tus rituales de Fin de Año o para dar un regalo lleno de significado y tradición a tus seres queridos.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Dimensiones: Alto 8.2 cm x Ancho 5.1 cm x Profundidad 3.5 cm aprox.',
+      'Diseño artesanal de personaje de Año Viejo',
+      'No incluye base',
+      'Ideal para rituales de Fin de Año o regalos con significado',
+    ],
+  },
+  {
+    id: 'velas-premium-alquimia',
+    name: 'Velas Premium Alquimia (Set x 5)',
+    tag: 'Nuevo',
+    price: '22€',
+    category: 'velas',
+    rotate: '-rotate-2',
+    gradient: 'from-purple-100 via-pink-50 to-rose-100',
+    accentColor: 'text-purple-500/50',
+    image: '/images/productos/velas-alquimia.avif',
+    description:
+      'Decretar funciona, pero encender tu intención funciona mejor. Elige el propósito que necesitas activar en tu vida y deja que la luz haga el resto. Transmite la idea de transformar tus deseos en realidades a través del fuego.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Set de 5 unidades en colores surtidos (Abundancia, Perseverancia, Viajes, Paciencia, Dinero)',
+      'Dimensiones: Alto 9.6 cm x Profundidad 1.3 cm aprox.',
+      'Incluye base de madera (puede variar diferente a la foto)',
+      'Perfecto para intencionar propósitos y manifestar',
+    ],
+  },
+  {
+    id: 'velas-premium-estrellas',
+    name: 'Velas Premium Estrellas',
+    tag: 'Popular',
+    price: 'Desde 17€',
+    category: 'velas',
+    rotate: 'rotate-1',
+    gradient: 'from-amber-100 via-rose-50 to-yellow-100',
+    accentColor: 'text-amber-500/50',
+    image: '/images/productos/velas-estrellas.avif',
+    images: ['/images/productos/velas-estrellas.avif', '/images/productos/velas-estrellas-colores.avif'],
+    description:
+      'Cada pieza fusiona la magia de una estrella con un decreto grabado en relieve para acompañar tus rituales, meditaciones o decorar tus espacios con un propósito claro. Colores surtidos.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Dimensiones: Alto 10.8 cm x Ancho 1.6 cm aprox.',
+      'Opción de colores surtidos a elección (aplica valor adicional según combinación)',
+      '5 Unidades (17€) / 10 Unidades (30€)',
+      'Ideal para rituales, meditaciones y decoración',
+    ],
+  },
+  {
+    id: 'vela-premium-mini-noel',
+    name: 'Vela Premium Mini Noel',
+    tag: 'Especial',
+    price: '8€',
+    category: 'velas',
+    rotate: '-rotate-2',
+    gradient: 'from-red-100 via-rose-50 to-amber-100',
+    accentColor: 'text-red-500/50',
+    image: '/images/productos/vela-mini-noel.jpg',
+    description:
+      'Moldeada de forma artesanal, decorada con un delicado lazo de raso rojo y grabada con la afirmación más poderosa para tus rituales de Fin de Año.',
+    deliveryTime: 'Entrega en 24-48h',
+    features: [
+      'Moldeada de forma artesanal',
+      'Decorada con delicado lazo de raso rojo',
+      'Grabada con afirmación para rituales de Fin de Año',
+      'Con aroma',
+    ],
+  },
 ]
 
-export const CATEGORIES = [
-  'todos',
+// Categorías de producto
+export const PRODUCT_CATEGORIES = [
   'tarjetas',
   'globos',
   'carteles',
@@ -214,3 +455,6 @@ export const CATEGORIES = [
   'anchetas',
   'kits',
 ] as const
+
+// Opciones del filtro
+export const CATEGORIES = ['todos', ...PRODUCT_CATEGORIES] as const
